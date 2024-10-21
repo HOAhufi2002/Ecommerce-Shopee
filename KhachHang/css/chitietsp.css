@@ -1,0 +1,308 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Màu nền cho toàn bộ trang */
+    margin: 0;
+    padding: 0;
+}
+
+.app__container1 {
+    padding:0 20px; /* Điều chỉnh padding trên và dưới thành 5px */
+    padding-bottom: 10px; /* Cách dưới cùng 5px */
+    background-color: #ffffff; 
+    border: 2px solid #ccc; 
+    border-radius: 3px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    width: 99%; 
+    max-width: 1200px; 
+    margin: 20px auto; 
+    margin-top: 140px; 
+}
+
+.app__container1 h1,
+.app__container1 p {
+    margin-top: 0; /* Loại bỏ margin-top của các phần tử con để không tạo khoảng trống thừa */
+}
+
+.product-left {
+    flex: 0 0 35%; /* Giảm kích thước của product-left */
+    padding-right: 20px;
+}
+
+.main-image {
+    width: 100%; /* Để hình ảnh chính không bị lệch ra ngoài */
+    border-radius: 2px; 
+}
+
+.thumbnail-images {
+    position: relative; 
+    display: flex;
+    justify-content: center; /* Canh giữa các ảnh */
+    align-items: center;
+    margin-top: 10px; 
+    width: 100%; /* Chiều ngang đầy đủ của product-left */
+    overflow: hidden; /* Ẩn các phần thừa bên ngoài */
+}
+
+.thumbnail-images-wrapper {
+    display: flex; 
+    justify-content: space-between; /* Tạo khoảng cách đều giữa các ảnh */
+    width: 100%; /* Đảm bảo chiều ngang bằng với product-left */
+}
+
+.thumbnail {
+    flex: 1 0 auto; /* Để các ảnh có thể co giãn và không bị xếp chồng lên nhau */
+    display: none; /* Bắt đầu ẩn tất cả các ảnh */
+    transition: opacity 0.5s ease; /* Thêm hiệu ứng chuyển động */
+}
+
+.thumbnail.visible {
+    display: block; /* Hiển thị ảnh hiện tại */
+}
+
+.thumbnail-images img {
+    width: calc(100% / 5 - 6px); /* Mỗi ảnh sẽ chiếm 1/5 chiều ngang của product-left và trừ đi khoảng cách giữa các ảnh */
+    height: auto; /* Để chiều cao của ảnh tự động tùy theo chiều rộng */
+    object-fit: cover;
+    margin: 0 3px; /* Khoảng cách giữa các ảnh */
+    border-radius: 1px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.thumbnail-images img:first-child,
+.thumbnail-images img:last-child {
+    width: calc(100% / 5 - 6px); /* Các ảnh đầu và cuối có cùng chiều rộng với các ảnh khác */
+}
+.thumbnail-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+.thumbnail-arrow.left {
+    left: 0;
+}
+
+.thumbnail-arrow.right {
+    right: 0;
+}
+
+.product-right {
+    flex: 1;
+    padding-left: 20px; 
+    display: flex;
+    flex-direction: column; /* Căn chỉnh các mục theo chiều dọc */
+    justify-content: flex-start; /* Để h1 bắt đầu từ trên */
+}
+
+.h1 {
+    font-size: 24px; 
+    font-weight: bold;
+    margin: 0; /* Loại bỏ hoàn toàn cả khoảng cách trên và dưới */
+    line-height: 1.5;
+    color: #333; 
+    padding: 0; /* Giữ padding bằng 0 để không có khoảng trống thừa */
+}
+
+.price {
+    font-size: 30px; 
+    margin-top: 15px; /* Thêm khoảng cách 20px phía trên */
+    margin-bottom: 15px;
+    color: #333; 
+}
+
+
+.discount-price {
+    color: #e91e63;
+    font-weight: bold;
+}
+
+.original-price {
+    text-decoration: line-through;
+    margin-left: 10px;
+    color: #888;
+}
+
+.sale {
+    color: #d32f2f;
+    margin-left: 10px;
+}
+
+.product-info {
+    margin: 20px 0;
+    font-size: 1.6rem; /* Tăng kích thước chữ */
+    line-height: 1.8; /* Tăng khoảng cách dòng */
+    color: #555;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    margin-bottom: 15px;
+}
+
+.label {
+    font-weight: bold;
+    color: #4f4e4e;
+}
+
+.value {
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+/* Tùy chỉnh cho các phần Màu Sắc, Size, và Số lượng */
+.options {
+    margin-top: -15px;
+    display: flex;
+    flex-direction: column; /* Để các mục nằm theo cột */
+    font-size: 1.6rem; /* Tăng kích thước chữ */
+    line-height: 1.8; /* Tăng khoảng cách dòng */
+}
+
+.color-options, .size-options, .quantity {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    margin-bottom: 20px; /* Tăng khoảng cách giữa các mục */
+    font-size: 1.6rem; /* Tăng kích thước chữ */
+    line-height: 1.8; /* Tăng khoảng cách dòng */
+}
+
+.color-options label, .size-options label, .quantity label {
+    margin-right: 10px; /* Khoảng cách giữa nhãn và giá trị */
+    font-weight: bold;
+    flex: 0 0 120px; /* Đặt chiều rộng cố định cho nhãn */
+}
+
+.colors, .sizes {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các mục xếp chồng lên nhau */
+    gap: 10px; /* Khoảng cách giữa các mục */
+    flex: 1; /* Chiếm không gian còn lại */
+}
+
+/* Các nút màu */
+.colors .color-item,
+.sizes button {
+    padding: 0; /* Xóa padding để đảm bảo kích thước cố định */
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Khoảng cách dưới mỗi nút */
+    width: 50px; /* Đặt chiều rộng cố định cho các nút */
+    height: 30px; /* Đặt chiều cao cố định cho các nút */
+    display: flex; /* Sử dụng flexbox để căn giữa nội dung */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    /* Không cần thuộc tính transition */
+}
+
+/* Các nút kích thước */
+.sizes button {
+    width: 40px; /* Đặt chiều rộng cố định cho nút size */
+    height: 30px; /* Đặt chiều cao cố định cho nút size */
+    margin-right: 10px; 
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    border-radius: 5px;
+    /* Loại bỏ thuộc tính transition */
+}
+
+/* Thay đổi màu nền và chữ cho nút đã chọn */
+.colors .color-item.selected,
+.sizes button.selected {
+    background-color: #333; /* Màu nền khi chọn */
+    color: #fff; /* Màu chữ khi chọn */
+}
+
+/* Hover cho các mục màu sắc và kích thước */
+.colors .color-item:hover,
+.sizes button:hover {
+    background-color: #e0e0e0; /* Màu khi hover */
+}
+
+/* Đảm bảo rằng màu nền của nút 'selected' không bị ảnh hưởng bởi hover */
+.colors .color-item.selected:hover,
+.sizes button.selected:hover {
+    background-color: #333; /* Giữ nguyên màu khi nút đã chọn */
+    color: #fff;
+}
+
+/* Các nút kích thước */
+.sizes button {
+    padding: 10px; 
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s, transform 0.2s;
+    font-size: 16px; 
+    margin-right: 10px; 
+    margin-bottom: 10px; /* Thêm khoảng cách dưới mỗi nút size */
+}
+
+/* Thay đổi màu nền và chữ cho nút đã chọn */
+.sizes button.selected {
+    background-color: #333; /* Màu nền khi chọn */
+    color: #fff; /* Màu chữ khi chọn */
+}
+
+/* Hover cho nút kích thước */
+.sizes button:hover {
+    background-color: #e0e0e0; /* Màu khi hover */
+}
+
+input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px; 
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-start; /* Căn chỉnh nút sang bên trái */
+    gap: 10px; /* Khoảng cách giữa hai nút */
+    margin-top: auto; /* Đẩy các nút xuống cuối container */
+}
+
+.add-to-cart, .buy-now {
+    padding: 10px 15px; /* Giữ nguyên padding để nút không quá nhỏ */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px; 
+    font-size: 14px; /* Giảm kích thước chữ trong nút */
+    width: 190px; /* Đặt chiều rộng cụ thể cho nút để ngắn lại */
+    height: 50px; /* Chiều cao tùy chọn cho nút */
+    white-space: nowrap; /* Ngăn không cho nội dung xuống dòng */
+    margin-bottom: 10px;
+}
+
+.add-to-cart {
+    background-color: #141414; /* Màu nút thêm vào giỏ hàng */
+}
+
+.buy-now {
+    background-color: #141414; /* Màu nút mua ngay */
+}
+
+.add-to-cart:hover {
+    background-color: #353434; /* Màu khi hover cho nút thêm vào giỏ hàng */
+}
+
+.buy-now:hover {
+    background-color: #353434; /* Màu khi hover cho nút mua ngay */
+}
