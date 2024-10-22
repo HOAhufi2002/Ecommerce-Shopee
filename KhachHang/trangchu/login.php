@@ -20,18 +20,23 @@ if (isset($_POST['xacnhan'])) {
     if ($result->num_rows > 0) {
         // Lấy thông tin người dùng từ cơ sở dữ liệu
         $user = $result->fetch_assoc();
-
+    
         // Nếu thông tin đúng, lưu thông tin người dùng vào session
         $_SESSION['user'] = [
             'tenkhach' => $user['tenkhach'], // Thay bằng trường tên khách trong cơ sở dữ liệu
             // Thêm các thông tin khác nếu cần
         ];
-
+    
         // Đặt cờ redirect để JavaScript xử lý chuyển hướng
         $_SESSION['redirect'] = true;
-        
+    
         // Đặt thông báo thành công
         $thongbao = "Đăng nhập thành công! Vui lòng chờ chút...";
+    
+        // Lưu tên người dùng vào localStorage bằng JavaScript
+        echo "<script>
+            localStorage.setItem('username', '" . $user['tenkhach'] . "');
+        </script>";
     } else {
         // Nếu sai, hiển thị thông báo lỗi
         $thongbao = "Sai tài khoản hoặc mật khẩu. Vui lòng nhập lại.";
@@ -76,9 +81,7 @@ if (isset($_POST['xacnhan'])) {
     <h2 class="logo">Logo</h2>
     <nav class="navigation">
         <a href="trangchu.php">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+
         <button class="btnLogin-popup">Login</button>
     </nav>
 </header>
