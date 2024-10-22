@@ -109,3 +109,4 @@ include('layout.php');
 
 // Đóng kết nối
 mysqli_close($conn);
+?>

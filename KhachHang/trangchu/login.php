@@ -23,9 +23,10 @@ if (isset($_POST['xacnhan'])) {
     
         // Nếu thông tin đúng, lưu thông tin người dùng vào session
         $_SESSION['user'] = [
-            'tenkhach' => $user['tenkhach'], // Thay bằng trường tên khách trong cơ sở dữ liệu
-            // Thêm các thông tin khác nếu cần
-        ];
+            'tenkhach' => $user['tenkhach'], 
+            'makhach' => $user['makhach'],
+            'diachi' => $user['diachi'],
+            'dienthoai' => $user['dienthoai']        ];
     
         // Đặt cờ redirect để JavaScript xử lý chuyển hướng
         $_SESSION['redirect'] = true;

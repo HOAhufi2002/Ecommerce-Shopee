@@ -115,3 +115,4 @@ function loadChiTietHoaDon(mahoadon) {
     xhr.send();
 }
 </script>
+?>

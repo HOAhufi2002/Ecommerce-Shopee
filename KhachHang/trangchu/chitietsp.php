@@ -1,5 +1,12 @@
 <?php
 session_start(); // Khởi động session trước khi bao gồm header hoặc bất kỳ mã HTML nào
+function checkLoggedIn() {
+    if (!isset($_SESSION['user'])) {
+        // Nếu người dùng chưa đăng nhập, chuyển hướng tới trang đăng nhập
+        header('Location: login.php');
+        exit();
+    }
+}
 
 include 'header.php'; // Bao gồm file header
 ?>
@@ -20,8 +27,14 @@ include 'header.php'; // Bao gồm file header
     <div class="app">
 
         <?php
-        // Xử lý nút "Mua Ngay" hoặc "Thêm vào giỏ hàng"
-    // Thêm sản phẩm vào giỏ hàng
+// Kiểm tra xem người dùng đã đăng nhập chưa
+if (!isset($_SESSION['user'])) {
+    // Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập
+    echo "<script>window.location.href='login.php';</script>";
+    exit();
+}
+
+// Nếu đã đăng nhập, xử lý thêm sản phẩm vào giỏ hàng
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['mahang'])) {
     $mahang = $_POST['mahang'];
     $tenhang = $_POST['tenhang'];
@@ -61,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['mahang'])) {
 
     // Chuyển hướng lại trang giỏ hàng
     echo "<script>window.location.href='giohang.php';</script>";
-        exit;
+    exit();
 }
 
         ?>
@@ -209,7 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['mahang'])) {
                                             <input type="hidden" name="mahang" value="<?php echo $mahang; ?>">
                                             <input type="hidden" name="tenhang" value="<?php echo $tenhang; ?>">
                                             <input type="hidden" name="hinh" value="<?php echo $images[0]; ?>">
-                                            <input type="hidden" name="gia" value="<?php echo $giam_gia; ?>">
+                                            <input type="hidden" name="gia" value="<?php echo ($don_gia - $giam_gia); ?>"> <!-- Giá sau giảm -->
                                             <input type="hidden" name="so_luong" value="1">
                                             <button type="submit" name="add_to_cart" class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm Vào Giỏ Hàng</button>
                                             <button type="submit" name="buy_now" class="buy-now">Mua Ngay</button>

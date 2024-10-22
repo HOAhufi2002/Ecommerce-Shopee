@@ -75,3 +75,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 // Đóng kết nối
 mysqli_close($conn);
+?>

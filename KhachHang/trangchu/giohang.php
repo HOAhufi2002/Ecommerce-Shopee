@@ -36,7 +36,8 @@ include 'header.php'; // Bao gồm file header
                         break;
                     }
                 }
-                header("Location: giohang.php"); // Chuyển hướng lại trang giỏ hàng
+                echo "<script>window.location.href='giohang.php';</script>";
+
                 exit;
             }
 
@@ -50,7 +51,7 @@ include 'header.php'; // Bao gồm file header
                         break;
                     }
                 }
-                header("Location: giohang.php"); // Chuyển hướng lại trang giỏ hàng
+                echo "<script>window.location.href='giohang.php';</script>";
                 exit;
             }
             ?>
@@ -114,13 +115,11 @@ include 'header.php'; // Bao gồm file header
 
                     <div class="cart-footer">
                         <div class="cart-actions">
-                            <input type="checkbox" class="select-all" id="select-all">
-                            <span class="select-all-text">Chọn tất cả</span>
-                            <button class="delete-selected">Xóa</button>
+                            <button ></button>
                         </div>
                         <div class="cart-summary">
                             <p id="total-summary">
-                                Tổng thanh toán (<?php echo count($_SESSION['cart']); ?> Sản phẩm):
+                                Tổng tiền (<?php echo count($_SESSION['cart']); ?> Sản phẩm):
                                 ₫<?php
                                     $total = 0;
                                     foreach ($_SESSION['cart'] as $item) {
@@ -129,8 +128,9 @@ include 'header.php'; // Bao gồm file header
                                     echo number_format($total, 0, '.', '.');
                                     ?>
                             </p>
-                            <button class="buy-now">Mua Hàng</button>
-                        </div>
+                            <form action="checkout.php" method="POST">
+    <button type="submit" class="buy-now">Mua Hàng</button>
+</form>                        </div>
                     </div>
                 </div>
             </div>
@@ -146,6 +146,7 @@ include 'header.php'; // Bao gồm file header
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
                     const plusBtns = document.querySelectorAll(".plus-btn");
+                    
                     const minusBtns = document.querySelectorAll(".minus-btn");
                     const selectAllCheckbox = document.getElementById("select-all");
                     const itemCheckboxes = document.querySelectorAll(".select-item");
@@ -159,7 +160,9 @@ include 'header.php'; // Bao gồm file header
                                 input.value = currentValue + 1;
                                 updateTotalPrice(input);
                             }
+                            
                         });
+                        
                     });
 
                     minusBtns.forEach((btn) => {

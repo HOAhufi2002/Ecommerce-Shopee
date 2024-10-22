@@ -34,3 +34,4 @@ if (mysqli_num_rows($result) > 0) {
 // Đóng kết nối
 mysqli_close($conn);
 
+?>
